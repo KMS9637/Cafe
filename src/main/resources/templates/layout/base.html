@@ -1,20 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Base Layout</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:insert="~{::title}">Cafe</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<!-- 헤더 포함 -->
-<th:block th:replace="header :: header"></th:block>
+<nav>
+    <div id="gnb">
+        <a th:href="@{/}" class="logo">
+            <img th:src="@{/images/logo.png}" alt="Cafe Logo" style="width: 100px; height: 100px; padding-left: 80px">
+        </a>
+        <ul class="main-menu">
+            <li class="depth1">
+                <a class="dp1" th:href="@{/menu}">
+                    <span class="ko">메뉴</span>
+                </a>
+                <ul class="depth2">
+                    <li><a th:href="@{/}">커피</a></li>
+                    <li><a th:href="@{/}">에이드</a></li>
+                    <li><a th:href="@{/}">티</a></li>
+                </ul>
+            </li>
+            <li class="depth1">
+                <a class="dp1" th:href="@{/store}">
+                    <span class="ko">매장 찾기</span>
+                </a>
+            </li>
+            <li class="depth1">
+                <a class="dp1" th:href="@{/}">
+                    <span class="ko">커뮤니티</span>
+                </a>
+                <ul class="depth2">
+                    <li><a th:href="@{/notice}">공지사항</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="user-menu">
+            <li>
+                <a th:href="@{/login}">
+                    <span>로그인</span>
+                </a>
+            </li>
+            <li><span>|</span></li>
+            <li>
+                <a th:href="@{/join}" style="padding-right: 80px">
+                    <span>회원가입</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<div class="content">
-    <!-- 컨텐츠는 여기서 정의 -->
-    <th:block th:replace="~{::body}"></th:block>
+<div layout:fragment="content">
+    <p>content 영역</p>
 </div>
 
-<!-- 푸터 포함 -->
-<th:block th:replace="footer :: footer"></th:block>
+<script th:src="@{/js/scripts.js}"></script>
+
+<div class="row footer">
+    <footer>
+        <ul class="copy_menu">
+            <li>주소 : 부산광역시 부산진구 중앙대로 708</li>
+            <li>(주)COFFEE 대표 : 3조</li>
+            <li>대표번호 : 1234-5678</li>
+            <li>이메일 : webproject@coffee.com</li>
+        </ul>
+        <span class="en">&copy; 2024 Coffee Company. All Rights Reserved.</span>
+    </footer>
+</div>
 </body>
 </html>
